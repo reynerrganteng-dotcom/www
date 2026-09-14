@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR GAMING STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0891b2;
+            --secondary: #10b981;
+            --bg: #0b0f19;
+            --surface: #151c2c;
+            --surface-hover: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-green: #10b981;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding-bottom: 120px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #0b1329 0%, #1e3a8a 50%, #06b6d4 100%);
+            color: white;
+            padding: 30px 20px;
+            border-bottom-left-radius: 28px;
+            border-bottom-right-radius: 28px;
+            box-shadow: 0 12px 25px rgba(6, 182, 212, 0.25);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .hero p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 4px;
+            color: #cbd5e1;
+        }
+
+        .hero-badge {
+            background: rgba(6, 182, 212, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            color: #67e8f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Kategori Title */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 32px 0 16px;
+        }
+
+        .section-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .section-header .line {
+            flex: 1;
+            height: 2px;
+            background: #1e293b;
+            border-radius: 2px;
+        }
+
+        /* Grid Cards */
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.15);
+        }
+
+        .card-body {
+            margin-bottom: 16px;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .menu-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .badge-tag {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px dashed #334155;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+
+        /* Controls (+ / - & Counter) */
+        .item-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-add {
+            background: var(--primary);
+            color: #0b0f19;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-add:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .counter-group {
+            display: none;
+            align-items: center;
+            background: #0b0f19;
+            border-radius: var(--radius-md);
+            padding: 2px;
+            border: 1px solid #334155;
+        }
+
+        .btn-counter {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: none;
+            background: var(--surface);
+            color: var(--text-main);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .count-value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0 10px;
+        }
+
+        /* Sticky Floating Cart */
+        .cart-bar-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            padding: 0 20px;
+        }
+
+        .cart-bar {
+            background: #151c2c;
+            color: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .cart-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .btn-checkout {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-checkout:active {
+            transform: scale(0.96);
+        }
+
+        /* Modal Dialog / Struk QRIS */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 15, 25, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 25px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-top: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .qris-img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 12px;
+            margin: 12px auto;
+            display: block;
+            border: 2px solid #ffffff;
+        }
+
+        .receipt-body {
+            background: #0b0f19;
+            border-radius: 14px;
+            padding: 14px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .receipt-row.total {
+            border-top: 2px dashed #334155;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .btn-wa {
+            background: #25d366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        .btn-cancel {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            width: 100%;
+            padding: 11px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #ef4444;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Profil Store -->
+    <header class="hero">
+        <img src="c:\Users\Administrator\Downloads\propil.jpeg" alt="DR GAMING STORE Profile" class="profile-img">
+        <h1>DR GAMING STORE</h1>
+        <p>Layanan Top Up Gamepass & Cash Terpercaya</p>
+        <span class="hero-badge">⚡ Buka Jam 06:00 Tutup Jam 00:00 • Proses Cepat</span>
+    </header>
+
+    <div class="container">
+        <!-- Section Gamepass -->
+        <div class="section-header">
+            <h2>🎮 GAMEPASS</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid-menu" id="menu-gamepass"></div>
+
+        <!-- Section Cash -->
+        <div class="section-header">
+            <h2>💰 CASH IN-GAME</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid-menu" id="menu-cash"></div>
+    </div>
+
+    <!-- Sticky Floating Bottom Bar -->
+    <div class="cart-bar-wrapper" id="cart-bar-wrapper" style="display: none;">
+        <div class="cart-bar">
+            <div class="cart-details">
+                <span class="cart-count" id="total-items">0 Item Dipilih</span>
+                <span class="cart-total" id="total-price">Rp 0</span>
+            </div>
+            <button class="btn-checkout" onclick="selesaiPesanan()">Bayar Sekarang →</button>
+        </div>
+    </div>
+
+    <!-- Modal Pembayaran & QRIS -->
+    <div class="modal" id="modal-struk">
+        <div class="modal-card">
+            <h2 style="font-weight: 800; color: #0051e6;">Pembayaran QRIS</h2>
+            
+            <!-- Peringatan Nominal Pembayaran -->
+            <div class="warning-box">
+                ⚠️ PEMBAYARAN HARUS SESUAI NOMINAL YANG KAMU BELI
+            </div>
+
+            <!-- Foto QRIS Toko -->
+            <img src="c:\Users\Administrator\Downloads\qris.jpeg" alt="QRIS Pembayaran" class="qris-img">
+
+            <div class="receipt-body">
+                <div id="receipt-items"></div>
+                <div class="receipt-row total">
+                    <span>Total Transfer</span>
+                    <span id="receipt-total" style="color: var(--accent-green);">Rp 0</span>
+                </div>
+            </div>
+
+            <!-- Tombol Konfirmasi WhatsApp -->
+            <a href="#" id="btn-wa-link" target="_blank" class="btn-wa">
+                📲 Kirim Bukti Pembayaran ke WhatsApp
+            </a>
+            
+            <!-- Tombol Batal -->
+            <button class="btn-cancel" onclick="tutupModal()">
+                ❌ Ingin Ubah Pesanan / Batal
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const noWA = "6289632484999";
+
+        // Data Produk
+        const menuData = [
+            // GAMEPASS
+            { id: 1, category: 'gamepass', name: 'Suspension Pro', desc: 'Gamepass fitur suspensi pro', price: 4500, tag: 'Pass' },
+            { id: 2, category: 'gamepass', name: 'Boombox Radio', desc: 'Akses radio musik in-game', price: 4500, tag: 'Pass' },
+            { id: 3, category: 'gamepass', name: 'Premium Acc', desc: 'Akses akun premium khusus', price: 8500, tag: 'Popular' },
+            { id: 4, category: 'gamepass', name: 'Advance Paint Pass', desc: 'Kustomisasi cat tingkat lanjut', price: 8500, tag: 'Pass' },
+            { id: 5, category: 'gamepass', name: 'Exclusive Rims', desc: 'Akses velg eksklusif keren', price: 11000, tag: 'Pass' },
+            { id: 6, category: 'gamepass', name: 'Costum Plate Pass', desc: 'Plat nomor kustom sesuai keinginan', price: 11000, tag: 'Pass' },
+            { id: 7, category: 'gamepass', name: 'Slot Limit Unlocked', desc: 'Buka batasan slot kendaraan/item', price: 12500, tag: 'Best' },
+            { id: 8, category: 'gamepass', name: 'Drag Spec Pass', desc: 'Performa & balap drag khusus', price: 15000, tag: 'Pass' },
+            { id: 9, category: 'gamepass', name: 'Luxury Pass', desc: 'Akses kelas mewah VIP', price: 16000, tag: 'VIP' },
+            { id: 10, category: 'gamepass', name: 'Police Pass', desc: 'Akses roleplay / fitur polisi', price: 20000, tag: 'Special' },
+            { id: 11, category: 'gamepass', name: '2x Pay Check', desc: 'Dapatkan gajian 2 kali lipat', price: 67000, tag: 'HOT' },
+
+            // CASH
+            { id: 12, category: 'cash', name: 'Cash 1M', desc: 'Paket uang 1 Miliar in-game', price: 98000, tag: 'Sultan' },
+            { id: 13, category: 'cash', name: 'Cash 500jt', desc: 'Paket uang 500 Juta in-game', price: 51000, tag: 'Super' },
+            { id: 14, category: 'cash', name: 'Cash 100jt', desc: 'Paket uang 100 Juta in-game', price: 13500, tag: 'Best Deal' },
+            { id: 15, category: 'cash', name: 'Cash 50jt', desc: 'Paket uang 50 Juta in-game', price: 8500, tag: 'Hemat' },
+            { id: 16, category: 'cash', name: 'Cash 10jt', desc: 'Paket uang 10 Juta in-game', price: 5500, tag: 'Standard' },
+            { id: 17, category: 'cash', name: 'Cash 5jt', desc: 'Paket uang 5 Juta in-game', price: 3500, tag: 'Starter' }
+        ];
+
+        let keranjang = {};
+
+        function renderMenu() {
+            menuData.forEach(item => {
+                const tagHTML = item.tag ? `<span class="badge-tag">${item.tag}</span>` : '';
+                const cardHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-top">
+                                <span class="menu-title">${item.name}</span>
+                                ${tagHTML}
+                            </div>
+                            <p class="description">${item.desc}</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="price">Rp ${item.price.toLocaleString('id-ID')}</span>
+                            <div class="item-control">
+                                <button class="btn-add" id="btn-add-${item.id}" onclick="tambahItem(${item.id})">+ Tambah</button>
+                                <div class="counter-group" id="counter-${item.id}">
+                                    <button class="btn-counter" onclick="kurangiItem(${item.id})">-</button>
+                                    <span class="count-value" id="count-${item.id}">1</span>
+                                    <button class="btn-counter" onclick="tambahItem(${item.id})">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById(`menu-${item.category}`).innerHTML += cardHTML;
+            });
+        }
+
+        function tambahItem(id) {
+            if (!keranjang[id]) {
+                const item = menuData.find(m => m.id === id);
+                keranjang[id] = { ...item, qty: 1 };
+            } else {
+                keranjang[id].qty += 1;
+            }
+            updateItemUI(id);
+            updateCartBar();
+        }
+
+        function kurangiItem(id) {
+            if (keranjang[id]) {
+                keranjang[id].qty -= 1;
+                if (keranjang[id].qty <= 0) {
+                    delete keranjang[id];
+                }
+            }
+            updateItemUI(id);
+            updateCartBar();
+        }
+
+        function updateItemUI(id) {
+            const btnAdd = document.getElementById(`btn-add-${id}`);
+            const counter = document.getElementById(`counter-${id}`);
+            const countValue = document.getElementById(`count-${id}`);
+
+            if (keranjang[id] && keranjang[id].qty > 0) {
+                btnAdd.style.display = 'none';
+                counter.style.display = 'flex';
+                countValue.innerText = keranjang[id].qty;
+            } else {
+                btnAdd.style.display = 'block';
+                counter.style.display = 'none';
+            }
+        }
+
+        function updateCartBar() {
+            let totalItem = 0;
+            let totalPrice = 0;
+
+            for (let id in keranjang) {
+                totalItem += keranjang[id].qty;
+                totalPrice += keranjang[id].qty * keranjang[id].price;
+            }
+
+            const cartWrapper = document.getElementById('cart-bar-wrapper');
+            if (totalItem > 0) {
+                cartWrapper.style.display = 'flex';
+                document.getElementById('total-items').innerText = `${totalItem} Item Dipilih`;
+                document.getElementById('total-price').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+            } else {
+                cartWrapper.style.display = 'none';
+            }
+        }
+
+        function selesaiPesanan() {
+            const receiptContainer = document.getElementById('receipt-items');
+            receiptContainer.innerHTML = '';
+            let grandTotal = 0;
+            let pesanWA = "Halo Admin *DR GAMING STORE*, saya sudah beli & Transfer:\n\n";
+
+            for (let id in keranjang) {
+                const item = keranjang[id];
+                const subtotal = item.qty * item.price;
+                grandTotal += subtotal;
+
+                receiptContainer.innerHTML += `
+                    <div class="receipt-row">
+                        <span>${item.name} <b>x${item.qty}</b></span>
+                        <span>Rp ${subtotal.toLocaleString('id-ID')}</span>
+                    </div>
+                `;
+
+                pesanWA += `• ${item.name} (${item.qty}x) = Rp ${subtotal.toLocaleString('id-ID')}\n`;
+            }
+
+            pesanWA += `\n*Total Bayar:* Rp ${grandTotal.toLocaleString('id-ID')}`;
+            pesanWA += `\n\nSaya sudah melakukan pembayaran via QRIS, berikut bukti pembayarannya:`;
+
+            const waLink = `https://wa.me/${noWA}?text=${encodeURIComponent(pesanWA)}`;
+            document.getElementById('btn-wa-link').href = waLink;
+
+            document.getElementById('receipt-total').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
+            document.getElementById('modal-struk').style.display = 'flex';
+        }
+
+        function tutupModal() {
+            document.getElementById('modal-struk').style.display = 'none';
+        }
+
+        renderMenu();
+    </script>
+</body>
+</html>
